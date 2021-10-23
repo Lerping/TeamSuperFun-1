@@ -21,7 +21,6 @@ git push origin myFeature
 ```
 
 4. Write your code now, make sure that you commit often using:
-
 ```
 git commit -am "This is a sample commit that is short and concise."
 ```
