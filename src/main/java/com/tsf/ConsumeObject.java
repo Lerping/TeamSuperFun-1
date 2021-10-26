@@ -3,12 +3,12 @@ package com.tsf;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Consume {
+public class ConsumeObject {
 
   private String type;
   private Value value;
 
-  public Consume() {
+  public ConsumeObject() {
   }
 
   public String getType() {
@@ -29,7 +29,7 @@ public class Consume {
 
   @Override
   public String toString() {
-    return "Consume{" +
+    return "ConsumeObject{" +
         "type='" + type + '\'' +
         ", value=" + value +
         '}';

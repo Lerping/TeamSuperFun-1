@@ -12,15 +12,18 @@ import org.springframework.stereotype.Component;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 @Component
-class BasicDomainObjectModelAssembler
-        implements RepresentationModelAssembler<BasicDomainObject, EntityModel<BasicDomainObject>> {
+class ConsumeObjectModelAssembler
+        implements RepresentationModelAssembler<ConsumeObject, EntityModel<ConsumeObject>> {
 
     @Override
-    public EntityModel<BasicDomainObject> toModel(BasicDomainObject basicDomainObject) {
-        return EntityModel.of(basicDomainObject,
-                linkTo(methodOn(BasicDomainObjectController.class).getBasicDomainObject(basicDomainObject.getId()))
+    public EntityModel<ConsumeObject> toModel(ConsumeObject consumeObject) {
+        return EntityModel.of(consumeObject);
+        /*
+        return EntityModel.of(consumeObject,
+                linkTo(methodOn(ConsumeController.class).getBasicDomainObject(consumeObject.getId()))
                         .withSelfRel(),
-                linkTo(methodOn(BasicDomainObjectController.class).getBasicDomainObjects())
+                linkTo(methodOn(ConsumeController.class).getBasicDomainObjects())
                         .withRel("basic"));
+        */
     }
 }
