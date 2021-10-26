@@ -18,8 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import org.springframework.http.ResponseEntity;
 
-
-
 import org.springframework.hateoas.IanaLinkRelations;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.CollectionModel;
@@ -57,6 +55,8 @@ class BasicDomainObjectController {
       *   Return type of CollectionModel<>, is a Spring HATEOAS container used
       *   to encapsulate collections of resources. Like EntityModel<> but for
       *   collections.
+      *
+      *   CollectionModel<> acts as the view in MVC
       */
     @GetMapping("/basicDomainObjects")
     CollectionModel<EntityModel<BasicDomainObject>> all() {
@@ -84,8 +84,6 @@ class BasicDomainObjectController {
      *
      *   ResponseEntity<> is used to create an HTTP 201 Created status message,
      *   including a Location response header
-     *
-     *   Return the model based version of the saved object
      */
     @PostMapping("/basicDomainObjects")
     ResponseEntity<?> newBasicDomainObject(@RequestBody BasicDomainObject newBasicDomainObject) {
@@ -124,10 +122,10 @@ class BasicDomainObjectController {
      */
     @GetMapping("/basicDomainObjects/{id}")
     EntityModel<BasicDomainObject> one(@PathVariable Long id) {
-        BasicDomainObject BasicDomainObject = repository.findById(id)
+        BasicDomainObject basicDomainObject = repository.findById(id)
             .orElseThrow(() -> new BasicDomainObjectNotFoundException(id));
 
-        return assembler.toModel(BasicDomainObject);
+        return assembler.toModel(basicDomainObject);
     }
 
 //    /* RPC - NOT RESTful

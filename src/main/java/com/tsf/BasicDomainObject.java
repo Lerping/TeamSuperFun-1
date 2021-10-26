@@ -1,5 +1,7 @@
 /* This will be the type of object used in the business logic. It remains in
  * the domain of the application.
+ *
+ * BasicDomainModel
  */
 
 package com.tsf;

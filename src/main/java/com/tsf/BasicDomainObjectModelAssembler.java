@@ -1,4 +1,7 @@
-/* Convert a non-model object (BasicDomainObject) into a model based object (EntityModel<BasicDomainObject>) */
+/* Convert a non-model object (BasicDomainObject) into a model based object (EntityModel<BasicDomainObject>)
+ *
+ * Acts as the view for the BasicDomainObject
+ */
 
 package com.tsf;
 
@@ -13,7 +16,7 @@ class BasicDomainObjectModelAssembler implements RepresentationModelAssembler<Ba
 
     @Override
     public EntityModel<BasicDomainObject> toModel(BasicDomainObject BasicDomainObject) {
-        return EntityModel.of(BasicDomainObject, //
+        return EntityModel.of(BasicDomainObject,
             linkTo(methodOn(BasicDomainObjectController.class).one(BasicDomainObject.getId())).withSelfRel(),
             linkTo(methodOn(BasicDomainObjectController.class).all()).withRel("basicDomainObjects"));
     }
