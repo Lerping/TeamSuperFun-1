@@ -1,0 +1,176 @@
+////////////////////////////////////////////////////////////////////////////////
+Minimum Project Deliverables
+////////////////////////////////////////////////////////////////////////////////
+
+1. Product
+
+    a. Must provide a REST endpoint that delivers a collection resource in JSON.
+
+        i. For example:
+
+            http://servername/movies/categories/bestpicture/1997
+            http://servername/categories/bestactress/year/1997
+
+            1. You would expect this to deliver a collection (array) of movies
+               nominated for Best Picture in 1997
+
+            2. You would expect this to deliver a collection of actors nominated
+               for Best Actress in 1997
+
+    b. Must provide a REST endpoint that delivers a singleton resource in JSON.
+
+        i. For example:
+
+            http://servername/movies/categories/bestpicture/1997/type/winner
+            http://servername/bestpicture/year/1997/winner
+
+            1. You would expect this to deliver one movie – the one that won
+               the Oscar for Best Picture in 1997.
+
+    c. Must provide a REST endpoint that allows a parameterized search of an Oscar
+       category and returns results containing the nominees in JSON.
+
+       i. For example:
+
+           http://servername/movies/search?year=1997&category=song
+           http://servername/search?type=actor&year=1997&category=supporting
+
+           1. This would be a request to search the data and return a collection
+              of objects that match the search criteria of nomination for best
+              song in 1997
+
+           2. This would be a request to search the data and return a collection
+              of objects that match the criteria of actors nominated in the best
+              supporting actor category in 1997
+
+    d. Must provide a minimum level of documentation regarding access, input and
+       output to your API endpoints.
+
+2. Process
+    a. Must have a product vision
+
+    b. Must have one persona
+
+    c. Must store source code in a repository such as Github.com or Gitlab.ecs.csus.edu
+
+        i. Instructor must receive invite to/location of repository.
+
+        ii. There must be evidence of ongoing repository activity for each sprint.
+
+    d. Must use Flying Donut to track and adhere to Scrum process.
+
+        i. Include a product backlog with all stories (user stories, technical debt,
+           bug fixes, etc.)
+
+        ii. Use story point estimation for user stories
+
+        iii. Use hours estimation for tasks
+
+    e. Must implement AT LEAST one user story per sprint.
+
+        i. Sprint backlog
+
+        ii. Tasks division for story
+
+    f. Must incorporate unit testing for a minimum of 2 classes.
+
+3. Presentation
+
+    a. Presentation details are outlined in the Project Final Deliverable and Grading
+       Rubric. All team members must participate in the oral project presentation.
+
+       i. Slides
+
+       ii. Discuss project and or process
+
+       iii. Demo a working product
+
+////////////////////////////////////////////////////////////////////////////////
+Non-Minimum Project Options
+////////////////////////////////////////////////////////////////////////////////
+
+1. Product
+
+    a. The results returned contain data which correlates the Oscar category results
+       with additional data from an outside source such as OMDB, TMDB, TVDB etc. by
+       providing a link to an external site for the movie.
+
+    b. The search feature allows limiting results a to date range.
+
+    c. More than one category can be searched.
+
+    d. More than one endpoint that delivers a collection resource.
+
+    e. More than one endpoint that delivers a singleton resource.
+
+    f. Graphical user interface (GUI) for the product (or portions thereof).
+
+    g. Well-designed HTML page documenting API endpoints and example
+       inputs/outputs.
+
+2. Process
+
+    a. Incorporate test-driven development practice for one Sprint
+
+        i. As evidenced by timestamps on check in for test code vs. check in for
+           implementation code.
+
+    b. Refactor code in a significant manner with a clear and stated goal for refactoring.
+
+        i. As evidenced by an implemented story from the Product Backlog with
+           corresponding work in repository.
+
+    c. Incorporate Contextual Inquiry/Elicitation techniques to create visual persona(s)
+       and develop additional personas.
+
+        i. As evidenced by notes taken from the inquiries and creation of additional
+           visual persona(s) beyond the minimum(part of deliverable 2).
+
+    d. Create mockups for a proposed GUI (even if not implemented).
+
+        i. As evidenced by review of the mockup during presentation and delivery
+           of mockup in final submission or repository under “diagrams” folder.
+
+    e. Incorporate pair programming during one Sprint.
+
+        i. As evidenced by a 1 minute clip of a recorded Zoom, Whatsapp, Use
+           Together , etc. session with link included in final deliverables.
+
+    f. Incorporate one or more design patterns.
+
+        i. Indicate in user story which design pattern for which class(es) and
+           provide comments in code (checked in to repository).
+
+    g. Adopt a coding standard and follow it
+
+        i. As evidence by its inclusion in the repository with a timestamp that
+           precedes the majority of the code.
+
+    h. Use a database to store and retrieve Oscar data using queries.
+
+        i. Note:  It is not expected that you will use this option. The architecture
+           required to implement this is more complex and students may not have
+           taken CSC134.  However, this option is meant to provide credit to any
+           team whose members have experience with and/or would like to utilize a
+           database.
+
+        ii. You will demonstrate the DB functionality during the presentation
+
+    i. Analyze Code using SonarQube or similar tool.
+
+        i. As evidenced by CLEAR screen shot of SonarQube analysis in final
+           deliverables or in repository.
+
+    j. Product/REST service is publicly accessible via HTTP
+
+        i. Must be demonstrated during the presentation and left running for at
+           least two weeks for later review by professor/grader.
+
+    k. Explain and document obstacles encountered during the project and how those
+       obstacles were handled.
+
+    l. Incorporate a significant and descriptive diagram (use case, class, sequence,
+       architecture, etc.) into analysis or design process.
+
+        i. As evidenced by its inclusion with the final deliverables OR in the
+           repository under a “diagrams” folder.
