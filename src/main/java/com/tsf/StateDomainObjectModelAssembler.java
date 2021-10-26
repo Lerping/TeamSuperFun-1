@@ -15,14 +15,14 @@ class StateDomainObjectModelAssembler implements RepresentationModelAssembler<St
         // Unconditional links to single-item resource and aggregate root
 
         EntityModel<StateDomainObject> stateDomainObjectModel = EntityModel.of(stateDomainObject,
-        linkTo(methodOn(StateDomainObjectController.class).one(stateDomainObject.getId())).withSelfRel(),
-        linkTo(methodOn(StateDomainObjectController.class).all()).withRel("stateDomainObjects"));
+        linkTo(methodOn(StateDomainObjectController.class).getStateDomainObject(stateDomainObject.getId())).withSelfRel(),
+        linkTo(methodOn(StateDomainObjectController.class).getStateDomainObjects()).withRel("stateDomainObjects"));
 
         // Conditional links based on state of the stateDomainObject
 
         if (stateDomainObject.getState() == State.START) {
-            stateDomainObjectModel.add(linkTo(methodOn(StateDomainObjectController.class).kill(stateDomainObject.getId())).withRel("START"));
-            stateDomainObjectModel.add(linkTo(methodOn(StateDomainObjectController.class).finish(stateDomainObject.getId())).withRel("FINISH"));
+            stateDomainObjectModel.add(linkTo(methodOn(StateDomainObjectController.class).killStateDomainObject(stateDomainObject.getId())).withRel("START"));
+            stateDomainObjectModel.add(linkTo(methodOn(StateDomainObjectController.class).finishStateDomainObject(stateDomainObject.getId())).withRel("FINISH"));
         }
 
         return stateDomainObjectModel;

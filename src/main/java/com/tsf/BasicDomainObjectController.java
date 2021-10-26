@@ -44,7 +44,7 @@ class BasicDomainObjectController {
 //     * HTTP GET - Get all BasicDomainObjects
 //     */
 //    @GetMapping("/BasicDomainObjects")
-//    List<BasicDomainObject> all() {
+//    List<BasicDomainObject> getBasicDomainObjects() {
 //        return repository.findAll();
 //    }
 
@@ -59,12 +59,12 @@ class BasicDomainObjectController {
       *   CollectionModel<> acts as the view in MVC
       */
     @GetMapping("/basicDomainObjects")
-    CollectionModel<EntityModel<BasicDomainObject>> all() {
-        List<EntityModel<BasicDomainObject>> BasicDomainObjects = repository.findAll()
+    CollectionModel<EntityModel<BasicDomainObject>> getBasicDomainObjects() {
+        List<EntityModel<BasicDomainObject>> basicDomainObjects = repository.findAll()
             .stream().map(assembler::toModel).collect(Collectors.toList());
 
-        return CollectionModel.of(BasicDomainObjects,
-            linkTo(methodOn(BasicDomainObjectController.class).all()).withSelfRel());
+        return CollectionModel.of(basicDomainObjects,
+            linkTo(methodOn(BasicDomainObjectController.class).getBasicDomainObjects()).withSelfRel());
     }
 
 //    /* RPC - NOT RESTful
@@ -86,9 +86,9 @@ class BasicDomainObjectController {
      *   including a Location response header
      */
     @PostMapping("/basicDomainObjects")
-    ResponseEntity<?> newBasicDomainObject(@RequestBody BasicDomainObject newBasicDomainObject) {
+    ResponseEntity<?> postBasicDomainObject(@RequestBody BasicDomainObject basicDomainObject) {
         EntityModel<BasicDomainObject> entityModel = assembler.toModel(
-            repository.save(newBasicDomainObject));
+            repository.save(basicDomainObject));
 
         return ResponseEntity.created(entityModel.getRequiredLink(
             IanaLinkRelations.SELF).toUri()).body(entityModel);
@@ -117,11 +117,11 @@ class BasicDomainObjectController {
      *   HATEOAS build a link to the BasicDomainObjectController.one() and flag it
      *   as a self link
      *
-     *   linkTo(methodOn(EmployeeController.class).all() asks Spring HATEOAS to
-     *   build a link to the aggregate root, all(), and call it "BasicDomainObjects"
+     *   linkTo(methodOn(EmployeeController.class).getBasicDomainObjects() asks Spring HATEOAS to
+     *   build a link to the aggregate root, getBasicDomainObjects(), and call it "BasicDomainObjects"
      */
     @GetMapping("/basicDomainObjects/{id}")
-    EntityModel<BasicDomainObject> one(@PathVariable Long id) {
+    EntityModel<BasicDomainObject> getBasicDomainObject(@PathVariable Long id) {
         BasicDomainObject basicDomainObject = repository.findById(id)
             .orElseThrow(() -> new BasicDomainObjectNotFoundException(id));
 
@@ -159,7 +159,7 @@ class BasicDomainObjectController {
      *
      */
     @PutMapping("/basicDomainObjects/{id}")
-    ResponseEntity<?> replaceBasicDomainObject(@RequestBody BasicDomainObject newBasicDomainObject, @PathVariable Long id) {
+    ResponseEntity<?> putBasicDomainObject(@RequestBody BasicDomainObject basicDomainObject, @PathVariable Long id) {
         BasicDomainObject updatedBasicDomainObject = repository.findById(id)
             .map(BasicDomainObject -> {
                 BasicDomainObject.setData(newBasicDomainObject.getData());
@@ -178,7 +178,8 @@ class BasicDomainObjectController {
 
     /* HTTP DELETE - Delete the BasicDomainObject identified by {id} */
     @DeleteMapping("/basicDomainObjects/{id}")
-    void deleteBasicDomainObject(@PathVariable Long id) {
+    ResponseEntity<?> deleteBasicDomainObject(@PathVariable Long id) {
         repository.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }

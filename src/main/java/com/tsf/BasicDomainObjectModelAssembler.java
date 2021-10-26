@@ -17,7 +17,7 @@ class BasicDomainObjectModelAssembler implements RepresentationModelAssembler<Ba
     @Override
     public EntityModel<BasicDomainObject> toModel(BasicDomainObject BasicDomainObject) {
         return EntityModel.of(BasicDomainObject,
-            linkTo(methodOn(BasicDomainObjectController.class).one(BasicDomainObject.getId())).withSelfRel(),
-            linkTo(methodOn(BasicDomainObjectController.class).all()).withRel("basicDomainObjects"));
+            linkTo(methodOn(BasicDomainObjectController.class).getBasicDomainObject(BasicDomainObject.getId())).withSelfRel(),
+            linkTo(methodOn(BasicDomainObjectController.class).getBasicDomainObjects()).withRel("basicDomainObjects"));
     }
 }

@@ -21,84 +21,90 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @RestController
 class StateDomainObjectController {
 
-    private final StateDomainObjectRepository stateDomainObjectRepository;
+    private final StateDomainObjectRepository repository;
     private final StateDomainObjectModelAssembler assembler;
 
-    StateDomainObjectController(StateDomainObjectRepository stateDomainObjectRepository, StateDomainObjectModelAssembler assembler) {
-        this.stateDomainObjectRepository = stateDomainObjectRepository;
+    StateDomainObjectController(StateDomainObjectRepository repository, StateDomainObjectModelAssembler assembler) {
+        this.repository = repository;
         this.assembler = assembler;
     }
 
     @GetMapping("/stateDomainObjects")
-    CollectionModel<EntityModel<StateDomainObject>> all() {
+    CollectionModel<EntityModel<StateDomainObject>> getStateDomainObjects() {
 
         List<EntityModel<StateDomainObject>> stateDomainObjects =
-            stateDomainObjectRepository.findAll()
+            repository.findAll()
             .stream() //
             .map(assembler::toModel) //
             .collect(Collectors.toList());
 
         return CollectionModel.of(stateDomainObjects, //
-            linkTo(methodOn(StateDomainObjectController.class).all())
+            linkTo(methodOn(StateDomainObjectController.class).getStateDomainObjects())
                 .withSelfRel());
     }
 
     @GetMapping("/stateDomainObjects/{id}")
-    EntityModel<StateDomainObject> one(@PathVariable Long id) {
+    EntityModel<StateDomainObject> getStateDomainObject(@PathVariable Long id) {
 
-        StateDomainObject stateDomainObject = stateDomainObjectRepository.findById(id) //
+        StateDomainObject stateDomainObject = repository.findById(id) //
             .orElseThrow(() -> new StateDomainObjectNotFoundException(id));
 
         return assembler.toModel(stateDomainObject);
     }
 
-    @DeleteMapping("/stateDomainObjects/{id}/kill")
-    ResponseEntity<?> kill(@PathVariable Long id) {
+    @PutMapping("/stateDomainObjects/{id}/kill")
+    ResponseEntity<?> killStateDomainObject(@PathVariable Long id) {
 
-        StateDomainObject stateDomainObject = stateDomainObjectRepository.findById(id) //
+        StateDomainObject stateDomainObject = repository.findById(id) //
             .orElseThrow(() -> new StateDomainObjectNotFoundException(id));
 
         if (stateDomainObject.getState() == State.START) {
             stateDomainObject.setState(State.KILL);
-            return ResponseEntity.ok(assembler.toModel(stateDomainObjectRepository.save(stateDomainObject)));
+            return ResponseEntity.ok(assembler.toModel(repository.save(stateDomainObject)));
         }
 
         return ResponseEntity //
             .status(HttpStatus.METHOD_NOT_ALLOWED) //
             .header(HttpHeaders.CONTENT_TYPE, MediaTypes.HTTP_PROBLEM_DETAILS_JSON_VALUE) //
             .body(Problem.create() //
-            .withTitle("Method not allowed") //
-            .withDetail("You can't cancel an order that is in the " + stateDomainObject.getState() + " state"));
+            .withTitle("Not allowed") //
+            .withDetail("KILL not allowed on: " + stateDomainObject.getState()));
     }
 
     @PutMapping("/stateDomainObjects/{id}/finish")
-    ResponseEntity<?> finish(@PathVariable Long id) {
+    ResponseEntity<?> finishStateDomainObject(@PathVariable Long id) {
 
-        StateDomainObject stateDomainObject = stateDomainObjectRepository.findById(id) //
+        StateDomainObject stateDomainObject = repository.findById(id) //
         .orElseThrow(() -> new StateDomainObjectNotFoundException(id));
 
         if (stateDomainObject.getState() == State.START) {
             stateDomainObject.setState(State.FINISH);
-            return ResponseEntity.ok(assembler.toModel(stateDomainObjectRepository.save(stateDomainObject)));
+            return ResponseEntity.ok(assembler.toModel(repository.save(stateDomainObject)));
         }
 
         return ResponseEntity //
         .status(HttpStatus.METHOD_NOT_ALLOWED) //
         .header(HttpHeaders.CONTENT_TYPE, MediaTypes.HTTP_PROBLEM_DETAILS_JSON_VALUE) //
         .body(Problem.create() //
-        .withTitle("Method not allowed") //
-        .withDetail("You can't complete an order that is in the " + stateDomainObject.getState() + " state"));
+        .withTitle("Not allowed") //
+        .withDetail("FINISH not allowed on: " + stateDomainObject.getState() + " state"));
     }
 
-    @PostMapping("/stateDomainObjects")
-    ResponseEntity<EntityModel<StateDomainObject>> newStateDomainObject(@RequestBody StateDomainObject stateDomainObject) {
+    @PutMapping("/stateDomainObjects/start")
+    ResponseEntity<EntityModel<StateDomainObject>> startStateDomainObject(@RequestBody StateDomainObject stateDomainObject) {
 
         stateDomainObject.setState(State.START);
-        StateDomainObject newStateDomainObject = stateDomainObjectRepository.save(stateDomainObject);
+        StateDomainObject newStateDomainObject = repository.save(stateDomainObject);
 
         return ResponseEntity //
             .created(linkTo(methodOn(StateDomainObjectController.class)
-            .one(newStateDomainObject.getId())).toUri())
+            .getStateDomainObject(newStateDomainObject.getId())).toUri())
             .body(assembler.toModel(newStateDomainObject));
+    }
+
+    @DeleteMapping("/stateDomainObjects/{id}")
+    ResponseEntity<?> deleteStateDomainObject(@PathVariable Long id) {
+        repository.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }
