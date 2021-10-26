@@ -4,7 +4,7 @@
  * BasicDomainModel
  */
 
-package com.tsf;
+package com.tsf.basic;
 
 import java.util.Objects;
 import javax.persistence.Entity;
@@ -13,7 +13,7 @@ import javax.persistence.Id;
 
 /* JPA annotation to make the object ready for JPA based storage ( H2 ) */
 @Entity
-class BasicDomainObject {
+public class BasicDomainObject {
 
     /*
      * @Id Java Persistence API Indicates that the following attribute is the
@@ -30,10 +30,10 @@ class BasicDomainObject {
      */
     private String data;
 
-    BasicDomainObject() {
+    public BasicDomainObject() {
     }
 
-    BasicDomainObject(String data) {
+    public BasicDomainObject(String data) {
         this.data = data;
     }
 

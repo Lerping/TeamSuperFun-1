@@ -1,6 +1,6 @@
 /* Indicates when a StateDomainObject has been looked up but not found */
 
-package com.tsf;
+package com.tsf.state;
 
 class StateDomainObjectNotFoundException extends RuntimeException {
 

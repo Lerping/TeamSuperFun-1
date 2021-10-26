@@ -2,7 +2,7 @@
 
 /* Overview of Spring HATEOAS (Hypermedia as the Engine of Application State):
 */
-package com.tsf;
+package com.tsf.basic;
 
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
@@ -27,7 +27,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 *   into the response body instead of rendering a template
 */
 @RestController
-class BasicDomainObjectController {
+public class BasicDomainObjectController {
 
     private final BasicDomainObjectRepository repository;
     private final BasicDomainObjectModelAssembler assembler;

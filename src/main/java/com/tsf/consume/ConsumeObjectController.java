@@ -1,14 +1,12 @@
-package com.tsf;
+package com.tsf.consume;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-
-
 @RestController
-class ConsumeObjectController {
+public class ConsumeObjectController {
 
     private final ConsumeObjectModelAssembler assembler;
 

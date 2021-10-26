@@ -5,11 +5,11 @@
  *   https://docs.spring.io/spring-data/jpa/docs/current/api/org/springframework/data/jpa/repository/JpaRepository.html
  */
 
-package com.tsf;
+package com.tsf.state;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-interface StateDomainObjectRepository extends JpaRepository<StateDomainObject, Long> {
+public interface StateDomainObjectRepository extends JpaRepository<StateDomainObject, Long> {
 /* Queries would be placed here
  * @NamedQuery for specific method
  * @Query for native queries

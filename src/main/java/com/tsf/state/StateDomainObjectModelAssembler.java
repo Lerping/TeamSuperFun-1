@@ -1,4 +1,4 @@
-package com.tsf;
+package com.tsf.state;
 
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;

@@ -1,6 +1,6 @@
 /* Indicates when a BasicDomainObject has been looked up but not found */
 
-package com.tsf;
+package com.tsf.basic;
 
 class BasicDomainObjectNotFoundException extends RuntimeException {
 

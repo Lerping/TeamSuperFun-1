@@ -5,11 +5,11 @@
  *   https://docs.spring.io/spring-data/jpa/docs/current/api/org/springframework/data/jpa/repository/JpaRepository.html
  */
 
-package com.tsf;
+package com.tsf.basic;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-interface BasicDomainObjectRepository extends JpaRepository<BasicDomainObject, Long> {
+public interface BasicDomainObjectRepository extends JpaRepository<BasicDomainObject, Long> {
     /*
      * Queries would be placed here
      *

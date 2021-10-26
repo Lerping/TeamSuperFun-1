@@ -3,7 +3,7 @@
  * Acts as the view for the BasicDomainObject
  */
 
-package com.tsf;
+package com.tsf.consume;
 
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;

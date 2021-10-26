@@ -1,6 +1,6 @@
 /* Used to render a HTTP 404 */
 
-package com.tsf;
+package com.tsf.basic;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-class StateDomainObjectNotFoundAdvice {
+class BasicDomainObjectNotFoundAdvice {
 
     /*
      * @ResponseBody Signals that this advice is rendered straight into the response
@@ -24,9 +24,9 @@ class StateDomainObjectNotFoundAdvice {
      * message of the exception.
      */
     @ResponseBody
-    @ExceptionHandler(StateDomainObjectNotFoundException.class)
+    @ExceptionHandler(BasicDomainObjectNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    String StateDomainObjectNotFoundHandler(StateDomainObjectNotFoundException ex) {
+    String BasicDomainObjectNotFoundHandler(BasicDomainObjectNotFoundException ex) {
         return ex.getMessage();
     }
 }
