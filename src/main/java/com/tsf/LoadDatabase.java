@@ -13,16 +13,18 @@ class LoadDatabase {
 
     @Bean
     CommandLineRunner initDatabase(BasicDomainObjectRepository basicDomainObjectRepository,
-        StateDomainObjectRepository stateDomainObjectRepository) {
+            StateDomainObjectRepository stateDomainObjectRepository) {
         return args -> {
             log.info("Preloading " + basicDomainObjectRepository.save(new BasicDomainObject("TEST_ONE")));
             log.info("Preloading " + basicDomainObjectRepository.save(new BasicDomainObject("TEST_TWO")));
             log.info("Preloading " + basicDomainObjectRepository.save(new BasicDomainObject("TEST_THREE")));
 
-            stateDomainObjectRepository.save(new StateDomainObject("STATE_TEST_ONE", State.START));
-            stateDomainObjectRepository.save(new StateDomainObject("STATE_TEST_TWO", State.FINISH));
+            stateDomainObjectRepository.save(new StateDomainObject("TEST_ONE", State.START));
+            stateDomainObjectRepository.save(new StateDomainObject("TEST_TWO", State.FINISH));
+            stateDomainObjectRepository.save(new StateDomainObject("TEST_THREE", State.START));
+
             stateDomainObjectRepository.findAll().forEach(stateDomainObject -> {
-                    log.info("Preloaded " + stateDomainObject);
+                log.info("Preloaded " + stateDomainObject);
             });
         };
     }

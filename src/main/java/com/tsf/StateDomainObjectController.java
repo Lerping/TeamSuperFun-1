@@ -29,34 +29,31 @@ class StateDomainObjectController {
         this.assembler = assembler;
     }
 
-    @GetMapping("/stateDomainObjects")
+    @GetMapping("/state")
     CollectionModel<EntityModel<StateDomainObject>> getStateDomainObjects() {
 
-        List<EntityModel<StateDomainObject>> stateDomainObjects =
-            repository.findAll()
-            .stream() //
-            .map(assembler::toModel) //
-            .collect(Collectors.toList());
+        List<EntityModel<StateDomainObject>> stateDomainObjects = repository.findAll().stream() //
+                .map(assembler::toModel) //
+                .collect(Collectors.toList());
 
         return CollectionModel.of(stateDomainObjects, //
-            linkTo(methodOn(StateDomainObjectController.class).getStateDomainObjects())
-                .withSelfRel());
+                linkTo(methodOn(StateDomainObjectController.class).getStateDomainObjects()).withSelfRel());
     }
 
-    @GetMapping("/stateDomainObjects/{id}")
+    @GetMapping("/state/{id}")
     EntityModel<StateDomainObject> getStateDomainObject(@PathVariable Long id) {
 
         StateDomainObject stateDomainObject = repository.findById(id) //
-            .orElseThrow(() -> new StateDomainObjectNotFoundException(id));
+                .orElseThrow(() -> new StateDomainObjectNotFoundException(id));
 
         return assembler.toModel(stateDomainObject);
     }
 
-    @PutMapping("/stateDomainObjects/{id}/kill")
+    @PutMapping("/state/{id}/kill")
     ResponseEntity<?> killStateDomainObject(@PathVariable Long id) {
 
         StateDomainObject stateDomainObject = repository.findById(id) //
-            .orElseThrow(() -> new StateDomainObjectNotFoundException(id));
+                .orElseThrow(() -> new StateDomainObjectNotFoundException(id));
 
         if (stateDomainObject.getState() == State.START) {
             stateDomainObject.setState(State.KILL);
@@ -64,18 +61,18 @@ class StateDomainObjectController {
         }
 
         return ResponseEntity //
-            .status(HttpStatus.METHOD_NOT_ALLOWED) //
-            .header(HttpHeaders.CONTENT_TYPE, MediaTypes.HTTP_PROBLEM_DETAILS_JSON_VALUE) //
-            .body(Problem.create() //
-            .withTitle("Not allowed") //
-            .withDetail("KILL not allowed on: " + stateDomainObject.getState()));
+                .status(HttpStatus.METHOD_NOT_ALLOWED) //
+                .header(HttpHeaders.CONTENT_TYPE, MediaTypes.HTTP_PROBLEM_DETAILS_JSON_VALUE) //
+                .body(Problem.create() //
+                        .withTitle("Not allowed") //
+                        .withDetail("KILL not allowed on: " + stateDomainObject.getState()));
     }
 
-    @PutMapping("/stateDomainObjects/{id}/finish")
+    @PutMapping("/state/{id}/finish")
     ResponseEntity<?> finishStateDomainObject(@PathVariable Long id) {
 
         StateDomainObject stateDomainObject = repository.findById(id) //
-        .orElseThrow(() -> new StateDomainObjectNotFoundException(id));
+                .orElseThrow(() -> new StateDomainObjectNotFoundException(id));
 
         if (stateDomainObject.getState() == State.START) {
             stateDomainObject.setState(State.FINISH);
@@ -83,26 +80,28 @@ class StateDomainObjectController {
         }
 
         return ResponseEntity //
-        .status(HttpStatus.METHOD_NOT_ALLOWED) //
-        .header(HttpHeaders.CONTENT_TYPE, MediaTypes.HTTP_PROBLEM_DETAILS_JSON_VALUE) //
-        .body(Problem.create() //
-        .withTitle("Not allowed") //
-        .withDetail("FINISH not allowed on: " + stateDomainObject.getState() + " state"));
+                .status(HttpStatus.METHOD_NOT_ALLOWED) //
+                .header(HttpHeaders.CONTENT_TYPE, MediaTypes.HTTP_PROBLEM_DETAILS_JSON_VALUE) //
+                .body(Problem.create() //
+                        .withTitle("Not allowed") //
+                        .withDetail("FINISH not allowed on: " + stateDomainObject.getState() + " state"));
     }
 
-    @PutMapping("/stateDomainObjects/start")
-    ResponseEntity<EntityModel<StateDomainObject>> startStateDomainObject(@RequestBody StateDomainObject stateDomainObject) {
+    @PutMapping("/state/start")
+    ResponseEntity<EntityModel<StateDomainObject>> startStateDomainObject(
+            @RequestBody StateDomainObject stateDomainObject) {
 
         stateDomainObject.setState(State.START);
         StateDomainObject newStateDomainObject = repository.save(stateDomainObject);
 
         return ResponseEntity //
-            .created(linkTo(methodOn(StateDomainObjectController.class)
-            .getStateDomainObject(newStateDomainObject.getId())).toUri())
-            .body(assembler.toModel(newStateDomainObject));
+                .created(linkTo(
+                        methodOn(StateDomainObjectController.class).getStateDomainObject(newStateDomainObject.getId()))
+                                .toUri())
+                .body(assembler.toModel(newStateDomainObject));
     }
 
-    @DeleteMapping("/stateDomainObjects/{id}")
+    @DeleteMapping("/state/{id}")
     ResponseEntity<?> deleteStateDomainObject(@PathVariable Long id) {
         repository.deleteById(id);
         return ResponseEntity.noContent().build();

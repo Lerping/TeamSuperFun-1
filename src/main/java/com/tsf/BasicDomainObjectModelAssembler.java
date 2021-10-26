@@ -5,19 +5,22 @@
 
 package com.tsf;
 
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
-
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Component;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
+
 @Component
-class BasicDomainObjectModelAssembler implements RepresentationModelAssembler<BasicDomainObject, EntityModel<BasicDomainObject>> {
+class BasicDomainObjectModelAssembler
+        implements RepresentationModelAssembler<BasicDomainObject, EntityModel<BasicDomainObject>> {
 
     @Override
     public EntityModel<BasicDomainObject> toModel(BasicDomainObject BasicDomainObject) {
         return EntityModel.of(BasicDomainObject,
-            linkTo(methodOn(BasicDomainObjectController.class).getBasicDomainObject(BasicDomainObject.getId())).withSelfRel(),
-            linkTo(methodOn(BasicDomainObjectController.class).getBasicDomainObjects()).withRel("basicDomainObjects"));
+                linkTo(methodOn(BasicDomainObjectController.class).getBasicDomainObject(BasicDomainObject.getId()))
+                        .withSelfRel(),
+                linkTo(methodOn(BasicDomainObjectController.class).getBasicDomainObjects())
+                        .withRel("basic"));
     }
 }
