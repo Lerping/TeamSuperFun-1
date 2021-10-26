@@ -52,7 +52,7 @@ class StateDomainObjectController {
         return assembler.toModel(stateDomainObject);
     }
 
-    @DeleteMapping("/orders/{id}/kill")
+    @DeleteMapping("/stateDomainObjects/{id}/kill")
     ResponseEntity<?> kill(@PathVariable Long id) {
 
         StateDomainObject stateDomainObject = stateDomainObjectRepository.findById(id) //
@@ -71,7 +71,7 @@ class StateDomainObjectController {
             .withDetail("You can't cancel an order that is in the " + stateDomainObject.getState() + " state"));
     }
 
-    @PutMapping("/orders/{id}/finish")
+    @PutMapping("/stateDomainObjects/{id}/finish")
     ResponseEntity<?> finish(@PathVariable Long id) {
 
         StateDomainObject stateDomainObject = stateDomainObjectRepository.findById(id) //

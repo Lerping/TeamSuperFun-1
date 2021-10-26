@@ -19,7 +19,7 @@ class LoadDatabase {
             log.info("Preloading " + basicDomainObjectRepository.save(new BasicDomainObject("TEST_TWO")));
             log.info("Preloading " + basicDomainObjectRepository.save(new BasicDomainObject("TEST_THREE")));
 
-            stateDomainObjectRepository.save(new StateDomainObject("STATE TEST_ONE", State.START));
+            stateDomainObjectRepository.save(new StateDomainObject("STATE_TEST_ONE", State.START));
             stateDomainObjectRepository.save(new StateDomainObject("STATE_TEST_TWO", State.FINISH));
             stateDomainObjectRepository.findAll().forEach(stateDomainObject -> {
                     log.info("Preloaded " + stateDomainObject);

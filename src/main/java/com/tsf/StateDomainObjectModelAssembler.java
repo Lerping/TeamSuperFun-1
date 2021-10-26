@@ -21,7 +21,7 @@ class StateDomainObjectModelAssembler implements RepresentationModelAssembler<St
         // Conditional links based on state of the stateDomainObject
 
         if (stateDomainObject.getState() == State.START) {
-            stateDomainObjectModel.add(linkTo(methodOn(StateDomainObjectController.class).kill(stateDomainObject.getId())).withRel("KILL"));
+            stateDomainObjectModel.add(linkTo(methodOn(StateDomainObjectController.class).kill(stateDomainObject.getId())).withRel("START"));
             stateDomainObjectModel.add(linkTo(methodOn(StateDomainObjectController.class).finish(stateDomainObject.getId())).withRel("FINISH"));
         }
 
