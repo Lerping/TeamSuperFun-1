@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-class DomainObjectNotFoundAdvice {
+class BasicDomainObjectNotFoundAdvice {
 
     /* @ResponseBody
     *   Signals that this advice is rendered straight into the response body
@@ -22,9 +22,9 @@ class DomainObjectNotFoundAdvice {
     * message of the exception.
     */
     @ResponseBody
-    @ExceptionHandler(DomainObjectNotFoundException.class)
+    @ExceptionHandler(BasicDomainObjectNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    String domainObjectNotFoundHandler(DomainObjectNotFoundException ex) {
+    String BasicDomainObjectNotFoundHandler(BasicDomainObjectNotFoundException ex) {
         return ex.getMessage();
     }
 }

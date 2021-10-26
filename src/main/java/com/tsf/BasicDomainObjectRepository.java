@@ -6,7 +6,7 @@ package com.tsf;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-interface DomainObjectRepository extends JpaRepository<DomainObject, Long> {
+interface BasicDomainObjectRepository extends JpaRepository<BasicDomainObject, Long> {
 /* Queries would be placed here
  * @NamedQuery for specific method
  * @Query for native queries

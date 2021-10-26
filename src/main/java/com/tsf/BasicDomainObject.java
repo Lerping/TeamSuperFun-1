@@ -12,7 +12,7 @@ import javax.persistence.Id;
 
 /* JPA annotation to make the object ready for JPA based storage ( H2 ) */
 @Entity
-class DomainObject {
+class BasicDomainObject {
 
     /* @Id
      *   Java Persistence API
@@ -31,9 +31,9 @@ class DomainObject {
      */
     private String data;
 
-    DomainObject() {}
+    BasicDomainObject() {}
 
-        DomainObject(String data) {
+        BasicDomainObject(String data) {
             this.data = data;
         }
 
@@ -57,13 +57,13 @@ class DomainObject {
         public boolean equals(Object o) {
             if (this == o)
             return true;
-            if (!(o instanceof DomainObject))
+            if (!(o instanceof BasicDomainObject))
             return false;
 
-            DomainObject domainObject = (DomainObject) o;
+            BasicDomainObject BasicDomainObject = (BasicDomainObject) o;
 
-            return Objects.equals(this.id, domainObject.id) &&
-            Objects.equals(this.data, domainObject.data);
+            return Objects.equals(this.id, BasicDomainObject.id) &&
+            Objects.equals(this.data, BasicDomainObject.data);
         }
 
         @Override
@@ -73,6 +73,6 @@ class DomainObject {
 
         @Override
         public String toString() {
-            return "DomainObject{" + "id=" + this.id + ", data='" + this.data + "'}";
+            return "BasicDomainObject{" + "id=" + this.id + ", data='" + this.data + "'}";
         }
     }
