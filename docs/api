@@ -1,0 +1,88 @@
+DEFINITIONS
+
+    HOST
+
+        The IP or domain name of the server, including the port
+
+    Clean URL, RESTful URL, or SEO URL
+
+        URL with cleaned path and query string
+        Decouples the UI from internal representation of information
+
+        Original URL                                    Clean URL
+        http://example.com/kb/index.php?cat=1&id=23 	http://example.com/kb/1/23
+
+    SLUG
+
+        The human readable part of the URL
+
+HOST/
+
+    Should default to the search page
+    Not sure about JSON or HAL
+
+HOST/movie/search?category=CATEGORY&year=YEAR&status=STATUS
+        {&review=REVIEW&name=NAME&personnel=PERSONNEL}
+
+    https://en.wikipedia.org/wiki/Query_string
+
+    CATEGORY
+
+        Award category
+
+    YEAR
+
+        Year of award
+
+    STATUS
+
+        The award status of the movie {winner, nominee}
+
+    POSSIBLE
+
+        REVIEW
+
+            The rating given to the movie
+            Above/Below/At the number given
+
+        NAME
+            Film name
+
+        PERSONEL
+
+            Individuals working on/in the movie
+
+HOST/movies/SLUG
+
+    Page for the given movie
+    Movie name is eluded to in SLUG
+
+HOST/movies/SLUG/REVIEW
+
+HOST/movies/CATEGORY
+
+HOST/movies/YEAR
+
+HOST/movies/STATUS
+
+HOST/movies/CATEGORY/YEAR/STATUS
+
+HOST/movies/CATEGORY/YEAR
+
+HOST/movies/YEAR/STATUS
+
+HOST/movies/CATEGORY/STATUS
+
+
+
+
+Database
+    Movie title
+    Description
+    Personel maybe
+    Category
+    Status
+    Year
+    Reviews
+    Link to watch
+    Photo maybe
