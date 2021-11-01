@@ -1,4 +1,3 @@
-//LOAD DATABASE
 package com.tsf;
 
 import org.springframework.boot.SpringApplication;
@@ -8,9 +7,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 
-import com.tsf.state.*;
-import com.tsf.basic.*;
-import com.tsf.consume.*;
+import com.tsf.legacy.state.*;
+import com.tsf.legacy.basic.*;
+import com.tsf.legacy.consume.*;
+import com.tsf.core.*;
+
 
 @SpringBootApplication
 public class Application {
