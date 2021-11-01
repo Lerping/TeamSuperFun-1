@@ -69,18 +69,13 @@ public class OmdbMovie {
             ObjectMapper mapper = new ObjectMapper();
 
             //https://www.omdbapi.com/?s={title_search}&apikey=4ee91431
-            String response = Request.get(
-                "https://www.omdbapi.com/?s=" + title + "&apikey=" + TSFConstants.OMDB_API_KEY);
+            String response = Request.get("https://www.omdbapi.com/?s=" + title + "&apikey=" + TSFConstants.OMDB_API_KEY);
 
             // Pull id from search string
-            String imdbId = mapper.readTree(response)
-                .get("Search")
-                .get(0)
-                .get("imdbID").asText();
+            String imdbId = mapper.readTree(response).get("Search").get(0).get("imdbID").asText();
 
             //https://www.omdbapi.com/?i={id}&apikey=4ee91431
-            movie = mapper.readValue(Request.get(
-                "https://www.omdbapi.com/?i=" + imdbId + "&apikey=" + TSFConstants.OMDB_API_KEY),
+            movie = mapper.readValue(Request.get("https://www.omdbapi.com/?i=" + imdbId + "&apikey=" + TSFConstants.OMDB_API_KEY),
                 OmdbMovie.class);
         }
         catch(Exception e) {
