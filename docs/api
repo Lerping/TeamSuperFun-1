@@ -16,64 +16,49 @@ DEFINITIONS
 
         The human readable part of the URL
 
-HOST/
 
-    Should default to the search page
-    Not sure about JSON or HAL
+ENDPOINTS
+    HOST/
 
-HOST/movie/search?category=CATEGORY&year=YEAR&status=STATUS
-        {&review=REVIEW&name=NAME&personnel=PERSONNEL}
+        Should default to the search page
+        Not sure about JSON or HAL
 
-    https://en.wikipedia.org/wiki/Query_string
+    HOST/movies/search?category=CATEGORY&year=YEAR&status=STATUS
 
-    CATEGORY
+        https://en.wikipedia.org/wiki/Query_string
 
-        Award category
+        CATEGORY
 
-    YEAR
+            Award category
 
-        Year of award
+        YEAR
 
-    STATUS
+            Year of award
 
-        The award status of the movie {winner, nominee}
+        STATUS
 
-    POSSIBLE
+            The award status of the movie {winner, nominee}
 
-        REVIEW
+    HOST/movies/SLUG
 
-            The rating given to the movie
-            Above/Below/At the number given
+        Page for the given movie
+        Movie title is the SLUG
 
-        NAME
-            Film name
+    HOST/movies/SLUG/REVIEW
 
-        PERSONEL
+    HOST/movies/CATEGORY
 
-            Individuals working on/in the movie
+    HOST/movies/YEAR
 
-HOST/movies/SLUG
+    HOST/movies/STATUS
 
-    Page for the given movie
-    Movie name is eluded to in SLUG
+    HOST/movies/CATEGORY/YEAR/STATUS
 
-HOST/movies/SLUG/REVIEW
+    HOST/movies/CATEGORY/YEAR
 
-HOST/movies/CATEGORY
+    HOST/movies/YEAR/STATUS
 
-HOST/movies/YEAR
-
-HOST/movies/STATUS
-
-HOST/movies/CATEGORY/YEAR/STATUS
-
-HOST/movies/CATEGORY/YEAR
-
-HOST/movies/YEAR/STATUS
-
-HOST/movies/CATEGORY/STATUS
-
-
+    HOST/movies/CATEGORY/STATUS
 
 
 Database
