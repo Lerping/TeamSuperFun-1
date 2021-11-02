@@ -1,0 +1,80 @@
+java
+└── com
+    └── tsf
+        │
+        ├── base
+        │
+        │    - Broadly used app-wide base and abstract classes
+        │
+        ├── core
+        │
+        │    - Broad, scattered use helpers, utilities, app health/stats
+        │      tracking, logging, etc
+        │
+        ├── controller
+        │
+        │    - Fields HTTP/CGI requests and drives/initiates request
+        │      comprehension, validation, security checks, requesting
+        │      operations by the Service module and invoking the View to
+        │      generate a response.
+        ├── data (DAO or DTO)
+        │
+        │    - Lower level data infrastructure, with several
+        │      packages under it for mappers, schema tables/enums, helpers,
+        │      record location, id management, etc
+        │
+        │
+        ├── domain
+        │
+        │    - App-wide exposed classes, managers, and interfaces to
+        │      each persisted (usually DB) domain 'object'. Each
+        │      object often correlates to one table row in you DB.
+        │
+        │    - Anemic Models
+        │
+        │    - Domain objects are mostly considered data, but have some fundamental
+        │      record construction, validation, elaboration, and ancillary information
+        │      functionality which is opaque to the rest of the application.
+        │
+        │    - Example
+        │        - Customer
+        │        - Account
+        │        - Purchase
+        │        - Inventory
+        │        - Product
+        │        - Sale
+        │        - Return
+        │        - SpecialOffer
+        │        - FeedbackComment
+        │
+        ├── repository
+        │
+        │    - More complicated persisted objects, often structured
+        │      to address certain efficiency or traversal needs, often each
+        │      repository is underpinned by several records, tables,
+        │      and even cross-DB structures.
+        │
+        │    - Main point of database interaction
+        │
+        │    - Example
+        │        - OrderHistory
+        │        - ProductsGlobalSearchIndex
+        │        - CustomerSpecificProductMarketingSuggestionCorrelates
+        │
+        ├── service
+        │
+        │    - The smarts of the whole application, performs macro, holoistic
+        │      operations involving multiple DB tables and operations.
+        │
+        │    - Translates between business logic and data retrieval calls
+        │
+        │    - Helper methods for the controllers
+        │
+        │    - Example
+        │        - account.UserAccountLifecycle
+        │        - order.CustomerOrder
+        │        - order.CustomerOrderShipment
+        │
+        └── view
+
+             - Intefaces with your jsp, freemarker, tapestry etc.
