@@ -1,8 +1,9 @@
 package com.tsf.domain;
 
+import java.util.Objects;
+
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 
 import com.tsf.core.Request;
 import com.tsf.core.TSFConstants;
@@ -20,7 +21,7 @@ public class OmdbMovie {
 //    private String year;
 
     @JsonProperty("Rated")
-    private String rated;
+    private String rating;
 
     @JsonProperty("Released")
     private String releaseDate;
@@ -50,9 +51,9 @@ public class OmdbMovie {
     private OmdbMovie() {
         this.setId("");
         this.setTitle("");
-        this.setYear("");
-        this.setRated("");
-        this.setReleased("");
+        //this.setYear("");
+        this.setRating("");
+        this.setReleaseDate("");
         this.setRuntime("");
         this.setGenre("");
         this.setDirector("");
@@ -117,7 +118,7 @@ public class OmdbMovie {
     }
 
 
-    void setGenre(String gere) {
+    void setGenre(String genre) {
         this.genre = genre;
     }
 
@@ -158,7 +159,7 @@ public class OmdbMovie {
 
 
     String getReleaseDate() {
-        return this.released;
+        return this.releaseDate;
     }
 
 
@@ -220,7 +221,7 @@ public class OmdbMovie {
         return Objects.equals(this.getId(), movie.getId()) &&
                Objects.equals(this.getTitle(), movie.getTitle()) &&
                Objects.equals(this.getReleaseDate(), movie.getReleaseDate()) &&
-               Objects.equals(this.getRated(), movie.getRated()) &&
+               Objects.equals(this.getRating(), movie.getRating()) &&
                Objects.equals(this.getRuntime(), movie.getRuntime()) &&
                Objects.equals(this.getGenre(), movie.getGenre()) &&
                Objects.equals(this.getDirector(), movie.getDirector()) &&
@@ -236,8 +237,8 @@ public class OmdbMovie {
         return "OmdbMovie{" +
             "id=" + this.id + ", " +
             "title=" + this.title +
-            "rated=" + this.rated + ", " +
-            "released=" + this.released + ", " +
+            "rated=" + this.rating + ", " +
+            "released=" + this.releaseDate + ", " +
             "runtime=" + this.runtime + ", " +
             "genre=" + this.genre + ", " +
             "director=" + this.director + ", " +
