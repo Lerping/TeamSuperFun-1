@@ -11,40 +11,40 @@ import com.tsf.core.TSFConstants;
 public class OmdbMovie {
 
     @JsonProperty("imdbID")
-    String id;
+    private String id;
 
     @JsonProperty("Title")
-    String title;
+    private String title;
 
-    @JsonProperty("Year")
-    String year;
+//    @JsonProperty("Year")
+//    private String year;
 
     @JsonProperty("Rated")
-    String rated;
+    private String rated;
 
     @JsonProperty("Released")
-    String released;
+    private String releaseDate;
 
     @JsonProperty("Runtime")
-    String runtime;
+    private String runtime;
 
     @JsonProperty("Genre")
-    String genre;
+    private String genre;
 
     @JsonProperty("Director")
-    String director;
+    private String director;
 
     @JsonProperty("Writer")
-    String writer;
+    private String writer;
 
     @JsonProperty("Actors")
-    String actors;
+    private String actors;
 
     @JsonProperty("Plot")
-    String plot;
+    private String plot;
 
     @JsonProperty("Poster")
-    String posterUri;
+    private String posterUri;
 
 
     private OmdbMovie() {
@@ -61,6 +61,7 @@ public class OmdbMovie {
         this.setPlot("");
         this.setPosterUri("");
     }
+
 
     public static OmdbMovie getOmdbMovie(String uri, String title) {
         OmdbMovie movie = new OmdbMovie();
@@ -85,6 +86,7 @@ public class OmdbMovie {
         return movie;
     }
 
+
     void setId(String id) {
         this.id = id;
     }
@@ -95,18 +97,18 @@ public class OmdbMovie {
     }
 
 
-    void setYear(String year) {
-        this.year = year;
+    void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
     }
 
 
-    void setRated(String rated) {
-        this.rated = rated;
-    }
+//    void setYear(String year) {
+//        this.year = year;
+//    }
 
 
-    void setReleased(String released) {
-        this.released = released;
+    void setRating(String rating) {
+        this.rating = rating;
     }
 
 
@@ -155,18 +157,18 @@ public class OmdbMovie {
     }
 
 
-    String getYear() {
-        return this.year;
-    }
-
-
-    String getRated() {
-        return this.rated;
-    }
-
-
-    String getReleased() {
+    String getReleaseDate() {
         return this.released;
+    }
+
+
+//    String getYear() {
+//        return this.year;
+//    }
+
+
+    String getRating() {
+        return this.rating;
     }
 
 
@@ -206,11 +208,34 @@ public class OmdbMovie {
 
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+
+        if (!(o instanceof OmdbMovie))
+            return false;
+
+        OmdbMovie movie = (OmdbMovie) o;
+
+        return Objects.equals(this.getId(), movie.getId()) &&
+               Objects.equals(this.getTitle(), movie.getTitle()) &&
+               Objects.equals(this.getReleaseDate(), movie.getReleaseDate()) &&
+               Objects.equals(this.getRated(), movie.getRated()) &&
+               Objects.equals(this.getRuntime(), movie.getRuntime()) &&
+               Objects.equals(this.getGenre(), movie.getGenre()) &&
+               Objects.equals(this.getDirector(), movie.getDirector()) &&
+               Objects.equals(this.getWriter(), movie.getWriter()) &&
+               Objects.equals(this.getActors(), movie.getActors()) &&
+               Objects.equals(this.getPlot(), movie.getPlot()) &&
+               Objects.equals(this.getPosterUri(), movie.getPosterUri());
+    }
+
+
+    @Override
     public String toString() {
         return "OmdbMovie{" +
             "id=" + this.id + ", " +
             "title=" + this.title +
-            "year=" + this.year + ", " +
             "rated=" + this.rated + ", " +
             "released=" + this.released + ", " +
             "runtime=" + this.runtime + ", " +
