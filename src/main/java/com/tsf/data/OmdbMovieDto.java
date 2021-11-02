@@ -11,53 +11,57 @@ import com.fasterxml.jackson.annotation.*;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class OmdbMovieDto {
 
-    // TODO: Make all fields final
-    @JsonProperty("imdbID")
+    @JsonProperty("id")
+    @JsonAlias("imdbID")
     private final String id;
 
-    @JsonProperty("Title")
+    @JsonProperty("title")
+    @JsonAlias("Title")
     private final String title;
 
-//    @JsonProperty("Year")
-//    private final String year;
-
-    @JsonProperty("Rated")
+    @JsonProperty("rating")
+    @JsonAlias("Rated")
     private final String rating;
 
-    @JsonProperty("Released")
+    @JsonProperty("releaseDate")
+    @JsonAlias("Released")
     private final String releaseDate;
 
-    @JsonProperty("Runtime")
+    @JsonProperty("runtime")
+    @JsonAlias("Runtime")
     private final String runtime;
 
-    @JsonProperty("Genre")
+    @JsonProperty("genre")
+    @JsonAlias("Genre")
     private final String genre;
 
-    @JsonProperty("Director")
+    @JsonProperty("director")
+    @JsonAlias("Director")
     private final String director;
 
-    @JsonProperty("Writer")
+    @JsonProperty("writer")
+    @JsonAlias("Writer")
     private final String writer;
 
-    @JsonProperty("Actors")
+    @JsonProperty("actors")
+    @JsonAlias("Actors")
     private final String actors;
 
-    @JsonProperty("Plot")
+    @JsonProperty("plot")
+    @JsonAlias("Plot")
     private final String plot;
 
-    @JsonProperty("Poster")
+    @JsonProperty("poster")
+    @JsonAlias("Poster")
     private final String posterUri;
 
 
-    // TODO: Make public constructor for Jackson
-    // TODO: Do better
     public OmdbMovieDto(String id, String title, String rating, String releaseDate,
         String runtime, String genre, String director, String writer, String actors,
         String plot, String posterUri
     ) {
         this.id = id;
         this.title = title;
-        //this.year = "";
         this.rating = rating;
         this.releaseDate = releaseDate;
         this.runtime = runtime;
@@ -72,7 +76,6 @@ public class OmdbMovieDto {
     public OmdbMovieDto() {
         this.id = "";
         this.title = "";
-        //this.year = "";
         this.rating = "";
         this.releaseDate = "";
         this.runtime = "";
@@ -89,7 +92,6 @@ public class OmdbMovieDto {
         return this.id;
     }
 
-
     String getTitle() {
         return this.title;
     }
@@ -98,11 +100,6 @@ public class OmdbMovieDto {
     String getReleaseDate() {
         return this.releaseDate;
     }
-
-
-//    String getYear() {
-//        return this.year;
-//    }
 
 
     String getRating() {
@@ -171,18 +168,18 @@ public class OmdbMovieDto {
 
     @Override
     public String toString() {
-        return "OmdbMovieDto{" +
-            "id=" + this.id + ", " +
-            "title=" + this.title +
-            "rated=" + this.rating + ", " +
-            "released=" + this.releaseDate + ", " +
-            "runtime=" + this.runtime + ", " +
-            "genre=" + this.genre + ", " +
-            "director=" + this.director + ", " +
-            "writer=" + this.writer + ", " +
-            "actors=" + this.actors + ", " +
-            "plot=" + this.plot + ", " +
-            "poster_uri=" + this.posterUri +
+        return "{" +
+            "\"id\":\"" + this.id + "\"," +
+            "\"title\":\"" + this.title + "\"," +
+            "\"rating\":\"" + this.rating + "\"," +
+            "\"releaseDate\":\"" + this.releaseDate + "\"," +
+            "\"runtime\":\"" + this.runtime + "\"," +
+            "\"genre\":\"" + this.genre + "\"," +
+            "\"director\":\"" + this.director + "\"," +
+            "\"writer\":\"" + this.writer + "\"," +
+            "\"actors\":\"" + this.actors + "\"," +
+            "\"plot\":\"" + this.plot + "\"," +
+            "\"posterUri\":\"" + this.posterUri + "\"," +
             "'}";
     }
 }

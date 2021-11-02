@@ -7,7 +7,7 @@ import com.tsf.core.TSFConstants;
 import com.tsf.data.OmdbMovieDto;
 
 public class OmdbMovieService {
-    public static OmdbMovieDto createOmdbMovie(String uri, String title) {
+    public static OmdbMovieDto createOmdbMovie(String title) {
         try {
             ObjectMapper mapper = new ObjectMapper();
 
@@ -21,6 +21,8 @@ public class OmdbMovieService {
             //https://www.omdbapi.com/?i={id}&apikey=4ee91431
             OmdbMovieDto movie = mapper.readValue(Request.get("https://www.omdbapi.com/?i=" + imdbId + "&apikey=" + TSFConstants.OMDB_API_KEY),
                 OmdbMovieDto.class);
+
+            System.out.println("https://www.omdbapi.com/?i=" + imdbId + "&apikey=" + TSFConstants.OMDB_API_KEY);
 
             return movie;
         }
