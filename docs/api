@@ -46,19 +46,19 @@ ENDPOINTS
 
     HOST/movies/SLUG/REVIEW
 
-    HOST/movies/CATEGORY
+    HOST/movies/category/CATEGORY
 
-    HOST/movies/YEAR
+    HOST/movies/year/YEAR
 
-    HOST/movies/STATUS
+    HOST/movies/status/STATUS
 
-    HOST/movies/CATEGORY/YEAR/STATUS
+    HOST/movies/category/CATEGORY/year/YEAR/status/STATUS
 
-    HOST/movies/CATEGORY/YEAR
+    HOST/movies/category/CATEGORY/year/YEAR
 
-    HOST/movies/YEAR/STATUS
+    HOST/movies/year/YEAR/status/STATUS
 
-    HOST/movies/CATEGORY/STATUS
+    HOST/movies/category/CATEGORY/status/STATUS
 
 
 Database
