@@ -1,13 +1,12 @@
 package com.tsf.controller;
 
-import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
 public class AcademyController {
 /*
-    @GetMapping("/movies/{category}/{year}/{status}")
+    @GetMapping("/movies/category/{category}/year/{year}/status/{status}")
     RepresentationModel<?> getCategoryYearStatus(@PathVariable String category, @PathVariable Long year, @PathVariable String status) {
     }
 */
@@ -19,34 +18,28 @@ public class AcademyController {
 */
 
 /*
-    @GetMapping("/movies/{category}/{status}")
+    @GetMapping("/movies/category/{category}/status/{status}")
     RepresentationModel<?> getCategoryStatus(@PathVariable String category, @PathVariable String status) {
     }
 */
 
 /*
-    @GetMapping("/movies/{year}/{status}")
+    @GetMapping("/movies/year/{year}/status/{status}")
     RepresentationModel<?> getYearStatus(@PathVariable Long year, @PathVariable String status) {
     }
 */
-
-
-// The endpoints /movies/{category,status} should be dispatched to by another controller
-// May not need @GetMapping
 /*
-    @GetMapping("/movies/{category}")
+    @GetMapping("/movies/category/{category}")
     RepresentationModel<?> getStatus(@PathVariable String category) {
     }
 */
-
 /*
-    @GetMapping("/movies/{status}")
+    @GetMapping("/movies/status/{status}")
     RepresentationModel<?> getStatus(@PathVariable String status) {
     }
 */
-
 /*
-    @GetMapping("/movies/{year}")
+    @GetMapping("/movies/year/{year}")
     RepresentationModel<?> getYear(@PathVariable Long year) {
     }
 */

@@ -11,7 +11,6 @@ import com.tsf.core.*;
 
 
 @RestController
-@RequestMapping("/movies/search")
 public class SearchController {
 
 /*
@@ -20,6 +19,7 @@ public class SearchController {
     // @RequestParam(required = false)
     // @RequestParam(name = "name")
 
+    @GetMapping("/movies/search")
     public RepresentationModel<?> getCategoryYearStatus(
         @RequestParam String category,
         @RequestParam String year,
