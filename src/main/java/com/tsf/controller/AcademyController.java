@@ -12,7 +12,7 @@ public class AcademyController {
 */
 
 /*
-    @GetMapping("/movies/{category}/{year}")
+    @GetMapping("/movies/category/{category}/year/{year}")
     RepresentationModel<?> getCategoryYear(@PathVariable String category, @PathVariable Long year) {
     }
 */
