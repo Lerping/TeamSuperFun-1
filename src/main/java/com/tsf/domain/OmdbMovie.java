@@ -1,3 +1,7 @@
+// TODO:
+//   - This should be a DTO
+//   - com.tsf.data
+//   - Make OmdbMovieService
 package com.tsf.domain;
 
 import java.util.Objects;
@@ -11,6 +15,7 @@ import com.tsf.core.TSFConstants;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class OmdbMovie {
 
+    // TODO: Make all fields final
     @JsonProperty("imdbID")
     private String id;
 
@@ -48,6 +53,8 @@ public class OmdbMovie {
     private String posterUri;
 
 
+    // TODO: Make public constructor for Jackson
+    // TODO: Do better
     private OmdbMovie() {
         this.setId("");
         this.setTitle("");
@@ -63,14 +70,17 @@ public class OmdbMovie {
         this.setPosterUri("");
     }
 
+    // TODO: Move into a service
+    public static OmdbMovie createOmdbMovie(String uri, String title) {
 
-    public static OmdbMovie getOmdbMovie(String uri, String title) {
+        // Throw exception instead of doing this bullshit
         OmdbMovie movie = new OmdbMovie();
 
         try {
             ObjectMapper mapper = new ObjectMapper();
 
             //https://www.omdbapi.com/?s={title_search}&apikey=4ee91431
+            // TODO: Read into JsonNode
             String response = Request.get("https://www.omdbapi.com/?s=" + title + "&apikey=" + TSFConstants.OMDB_API_KEY);
 
             // Pull id from search string
@@ -87,7 +97,7 @@ public class OmdbMovie {
         return movie;
     }
 
-
+    // TODO: Remove setters
     void setId(String id) {
         this.id = id;
     }
