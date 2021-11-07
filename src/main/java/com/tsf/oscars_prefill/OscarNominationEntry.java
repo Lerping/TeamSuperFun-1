@@ -4,20 +4,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Column;
 
 @Entity
-public class Entry {
+public class OscarNominationEntry {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     private Long year;
+    @Column(length = 1000)
     private String category;
     private Boolean winner;
+    @Column(length = 1000)
     private String entity;
 
-    protected Entry() {}
+    protected OscarNominationEntry() {}
 
-    public Entry(Long year, String category, Boolean winner, String entity) {
+    public OscarNominationEntry(Long year, String category, Boolean winner, String entity) {
         this.year = year;
         this.category = category;
         this.winner = winner;

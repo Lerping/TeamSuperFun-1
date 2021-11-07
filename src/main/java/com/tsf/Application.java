@@ -46,15 +46,15 @@ public class Application {
     // }
 
     @Bean
-    CommandLineRunner initOscarsDatabase(EntryRepository repository) {
+    CommandLineRunner initOscarsDatabase(OscarNominationEntryRepository repository) {
 
         // Cheap way of preloading data
         return args -> {
             log.info("Clearing repository...");
             repository.deleteAll();
-            PrefillDatabase jsonData = new PrefillDatabase();
-            ArrayList<Entry> data = jsonData.getEntriesArray();
-            for (Entry entry : data) {
+            PrefillDatabase jsonData = new PrefillDatabase(".\\src\\main\\resources\\oscars_db_prefill_data.json");
+            ArrayList<OscarNominationEntry> data = jsonData.getEntriesArray();
+            for (OscarNominationEntry entry : data) {
                 log.info("Preloading: " + repository.save(entry));
             }
         };

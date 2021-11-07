@@ -10,7 +10,7 @@ package com.tsf.oscars_prefill;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 
-public interface EntryRepository extends CrudRepository<Entry, Long> {
+public interface OscarNominationEntryRepository extends CrudRepository<OscarNominationEntry, Long> {
     // List<Entry> findByLastName(String lastName);
 
     // Customer findById(long id);

@@ -5,8 +5,12 @@ import java.io.FileReader;
 import java.util.Iterator;
 import java.util.Map;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.nio.file.Files;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.*;
@@ -18,17 +22,25 @@ import com.tsf.oscars_prefill.*;
 
 public class PrefillDatabase
 {
-	public PrefillDatabase()
-	{
+    private static final Logger log = LoggerFactory.getLogger(PrefillDatabase.class);
+    private String JsonFilePath;
 
-	}
+    public PrefillDatabase(String filePath) throws FileNotFoundException {
+        File f = new File(filePath);
 
-    public ArrayList<Entry> getEntriesArray() throws Exception {
+        if (f.exists()) {
+            this.JsonFilePath = filePath;
+        } else {
+            throw new FileNotFoundException("Please specify a different filepath to PrefillDatabase constructor");
+        }
+    }
+
+    public ArrayList<OscarNominationEntry> getEntriesArray() throws Exception {
         // Return object
-        ArrayList<Entry> returnObject = new ArrayList<Entry>();
+        ArrayList<OscarNominationEntry> returnObject = new ArrayList<OscarNominationEntry>();
 
 		// parsing file "JSONExample.json"
-		Object obj = new JSONParser().parse(new FileReader(".\\src\\main\\resources\\json_example.json"));
+		Object obj = new JSONParser().parse(new FileReader(this.JsonFilePath));
 		
 		// typecasting obj to JSONObject
 		JSONArray jo = (JSONArray) obj;
@@ -42,7 +54,7 @@ public class PrefillDatabase
             String category = (String) entryJson.get("category");
             Boolean winner = (Boolean) entryJson.get("winner");
             String entity = (String) entryJson.get("entity");
-            Entry newEntry = new Entry(year, category, winner, entity);
+            OscarNominationEntry newEntry = new OscarNominationEntry(year, category, winner, entity);
             returnObject.add(newEntry);
         }
         return returnObject;
