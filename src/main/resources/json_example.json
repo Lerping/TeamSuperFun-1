@@ -1,0 +1,20 @@
+[
+    {
+        "category": "ACTOR",
+        "entity": "Richard Barthelmess",
+        "winner": false,
+        "year": 1927
+    },
+    {
+        "category": "ACTOR",
+        "entity": "Emil Jannings",
+        "winner": true,
+        "year": 1927
+    },
+    {
+        "category": "ACTOR",
+        "entity": "Julian hernaandez",
+        "winner": true,
+        "year": 1992
+    }
+]

@@ -1,5 +1,6 @@
 package com.tsf;
 
+import java.util.ArrayList;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.slf4j.Logger;
@@ -11,6 +12,7 @@ import com.tsf.legacy.state.*;
 import com.tsf.legacy.basic.*;
 import com.tsf.legacy.consume.*;
 import com.tsf.core.*;
+import com.tsf.oscars_prefill.*;
 
 
 @SpringBootApplication
@@ -21,25 +23,40 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
+    // @Bean
+    // CommandLineRunner initDatabase(BasicDomainObjectRepository basicDomainObjectRepository,
+    //     StateDomainObjectRepository stateDomainObjectRepository) {
+
+    //     // Cheap way of preloading data
+    //     return args -> {
+    //         // BasicDomainObject
+    //         log.info("Preloading " + basicDomainObjectRepository.save(new BasicDomainObject("TEST_ONE")));
+    //         log.info("Preloading " + basicDomainObjectRepository.save(new BasicDomainObject("TEST_TWO")));
+    //         log.info("Preloading " + basicDomainObjectRepository.save(new BasicDomainObject("TEST_THREE")));
+
+    //         // StateDomainObject
+    //         stateDomainObjectRepository.save(new StateDomainObject("TEST_ONE", State.START));
+    //         stateDomainObjectRepository.save(new StateDomainObject("TEST_TWO", State.FINISH));
+    //         stateDomainObjectRepository.save(new StateDomainObject("TEST_THREE", State.START));
+
+    //         stateDomainObjectRepository.findAll().forEach(stateDomainObject -> {
+    //             log.info("Preloaded " + stateDomainObject);
+    //         });
+    //     };
+    // }
+
     @Bean
-    CommandLineRunner initDatabase(BasicDomainObjectRepository basicDomainObjectRepository,
-        StateDomainObjectRepository stateDomainObjectRepository) {
+    CommandLineRunner initOscarsDatabase(EntryRepository repository) {
 
         // Cheap way of preloading data
         return args -> {
-            // BasicDomainObject
-            log.info("Preloading " + basicDomainObjectRepository.save(new BasicDomainObject("TEST_ONE")));
-            log.info("Preloading " + basicDomainObjectRepository.save(new BasicDomainObject("TEST_TWO")));
-            log.info("Preloading " + basicDomainObjectRepository.save(new BasicDomainObject("TEST_THREE")));
-
-            // StateDomainObject
-            stateDomainObjectRepository.save(new StateDomainObject("TEST_ONE", State.START));
-            stateDomainObjectRepository.save(new StateDomainObject("TEST_TWO", State.FINISH));
-            stateDomainObjectRepository.save(new StateDomainObject("TEST_THREE", State.START));
-
-            stateDomainObjectRepository.findAll().forEach(stateDomainObject -> {
-                log.info("Preloaded " + stateDomainObject);
-            });
+            log.info("Clearing repository...");
+            repository.deleteAll();
+            PrefillDatabase jsonData = new PrefillDatabase();
+            ArrayList<Entry> data = jsonData.getEntriesArray();
+            for (Entry entry : data) {
+                log.info("Preloading: " + repository.save(entry));
+            }
         };
     }
 }
